@@ -1,7 +1,69 @@
-<p-card class="w-full">
-  <ng-template #title>Regole</ng-template>
-  lorem ipsum
-  <ng-template #footer>
-    <p-button label="Torna al gioco" class="w-full" routerLink="/game/setup"></p-button>
-  </ng-template>
-</p-card>
+<div class="h-full w-full flex flex-col items-center justify-between p-6 relative">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(var(--primary-rgb),0.1)_0%,transparent_60%)] -z-10"
+  ></div>
+
+  <div
+    class="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.08)_50%)] bg-[length:100%_4px]"
+  ></div>
+
+  <header class="text-center mt-4">
+    <h1
+      class="text-4xl font-black italic tracking-tighter text-primary-400 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)] animate-pulse uppercase"
+    >
+      Undercover
+    </h1>
+    <div class="h-0.5 w-16 bg-primary-900 mx-auto mt-2"></div>
+  </header>
+
+  <main class="w-full max-w-xs flex flex-col gap-6">
+    <app-active-game-banner />
+
+    <div class="flex flex-col gap-3">
+      <p-button
+        label="[ INIZIA_PROTOCOLLO ]"
+        (onClick)="startNew()"
+        styleClass="w-full py-5 border-2 border-primary-500 bg-primary-500/5 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all shadow-[0_0_15px_rgba(var(--primary-rgb),0.2)] flex justify-center items-center uppercase"
+      />
+
+      <p-button
+        label="IMPOSTAZIONI"
+        routerLink="/settings"
+        [text]="true"
+        styleClass="w-full text-primary-800 hover:text-primary-400 text-[10px] tracking-[0.3em] uppercase transition-colors flex justify-center items-center"
+      />
+    </div>
+  </main>
+
+  <section class="w-full max-w-xs">
+    <p-accordion value="0" [pt]="{ root: { class: 'bg-transparent border-none' } }">
+      <p-accordion-panel value="0" class="border-none bg-transparent">
+        <p-accordion-header
+          [pt]="{ root: { class: 'bg-transparent border-none p-0 flex justify-center' } }"
+        >
+          <span
+            class="text-[10px] text-primary-700 tracking-[0.4em] uppercase hover:text-primary-400 transition-colors p-2 cursor-pointer"
+          >
+            > Leggi_Regole.log
+          </span>
+        </p-accordion-header>
+        <p-accordion-content [pt]="{ content: { class: 'bg-transparent border-none p-4' } }">
+          <div
+            class="text-[11px] text-primary-600/70 space-y-3 border-l border-primary-900/40 pl-4 font-mono leading-relaxed"
+          >
+            <p><b class="text-primary-400">#01</b> Tutti i Civili hanno la stessa parola.</p>
+            <p><b class="text-primary-400">#02</b> Undercover ha una parola simile ma diversa.</p>
+            <p><b class="text-primary-400">#03</b> Mr. White non ha parole. Bluffa.</p>
+          </div>
+        </p-accordion-content>
+      </p-accordion-panel>
+    </p-accordion>
+  </section>
+
+  <footer
+    class="w-full flex justify-between text-[8px] text-primary-900 font-bold opacity-40 uppercase tracking-[0.3em] pb-2"
+  >
+    <span>Kernel_v21.4</span>
+    <span class="animate-pulse">Ready_</span>
+  </footer>
+</div>

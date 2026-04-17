@@ -9,5 +9,10 @@ import { GameService } from '../../../services/game-service';
   styles: ``,
 })
 export class Results {
-  store = inject(GameService);
+  protected store = inject(GameService);
+
+  getCurrentTime(): string {
+    const now = new Date();
+    return `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+  }
 }

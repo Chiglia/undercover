@@ -1,1 +1,124 @@
-<p>settings works!</p>
+<div
+  class="h-full w-full flex flex-col items-center p-6 relative overflow-hidden"
+  *transloco="let t"
+>
+  <header class="w-full max-w-sm mt-4 mb-8 border-l-4 border-primary-500 pl-4 shrink-0">
+    <p class="text-[10px] text-primary-700 font-bold uppercase tracking-[0.3em]">
+      Configurazione_Sistema:
+    </p>
+    <h2 class="text-4xl font-black tracking-tighter text-primary-400 uppercase">Settings</h2>
+  </header>
+
+  <main class="w-full max-w-sm flex-1 flex flex-col gap-8">
+    <app-active-game-banner />
+
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="h-[1px] flex-1 bg-primary-900/30"></span>
+        <span class="text-[9px] text-primary-800 font-mono uppercase tracking-widest"
+          >Lingua_Interfaccia</span
+        >
+        <span class="h-[1px] flex-1 bg-primary-900/30"></span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        @for (lang of availableLangs; track lang.code) {
+          <button
+            (click)="changeLang(lang.code)"
+            [class]="
+              currentLang === lang.code
+                ? 'bg-primary-500 text-slate-950 border-primary-500 shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)]'
+                : 'bg-transparent text-primary-600 border-primary-900/50 hover:border-primary-500'
+            "
+            class="flex items-center justify-center gap-3 py-4 border-2 font-black tracking-widest uppercase transition-all duration-300 group"
+          >
+            <span class="text-xs font-mono">[{{ lang.code }}]</span>
+            <span class="text-sm">{{ lang.label }}</span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4 mt-4">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="h-[1px] flex-1 bg-primary-900/30"></span>
+        <span class="text-[9px] text-primary-800 font-mono uppercase tracking-widest"
+          >Creator_Credentials</span
+        >
+        <span class="h-[1px] flex-1 bg-primary-900/30"></span>
+      </div>
+
+      <div class="bg-primary-500/5 border border-primary-900/30 p-4 relative group">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500 opacity-30"></div>
+
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col">
+            <span class="text-[10px] text-primary-700 uppercase font-bold tracking-tighter"
+              >Sviluppato_da:</span
+            >
+            <span class="text-xl font-black text-primary-400 tracking-widest uppercase"
+              >Chiglia</span
+            >
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <a
+              href="https://chiglia.ovh"
+              target="_blank"
+              class="flex items-center gap-3 p-2 border border-primary-900/20 hover:border-primary-500 hover:bg-primary-500/10 transition-all group"
+            >
+              <i class="pi pi-globe text-primary-600 group-hover:text-primary-400"></i>
+              <span class="text-[10px] font-mono text-primary-500 uppercase">Web_Portfo</span>
+            </a>
+
+            <a
+              href="https://github.com/chiglia"
+              target="_blank"
+              class="flex items-center gap-3 p-2 border border-primary-900/20 hover:border-primary-500 hover:bg-primary-500/10 transition-all group"
+            >
+              <i class="pi pi-github text-primary-600 group-hover:text-primary-400"></i>
+              <span class="text-[10px] font-mono text-primary-500 uppercase">Git_Source</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/davidechigliaro/"
+              target="_blank"
+              class="flex items-center gap-3 p-2 border border-primary-900/20 hover:border-primary-500 hover:bg-primary-500/10 transition-all group"
+            >
+              <i class="pi pi-linkedin text-primary-600 group-hover:text-primary-400"></i>
+              <span class="text-[10px] font-mono text-primary-500 uppercase">Link_Net</span>
+            </a>
+
+            <a
+              href="https://www.instagram.com/chigliadellabarca"
+              target="_blank"
+              class="flex items-center gap-3 p-2 border border-primary-900/20 hover:border-primary-500 hover:bg-primary-500/10 transition-all group"
+            >
+              <i class="pi pi-instagram text-primary-600 group-hover:text-primary-400"></i>
+              <span class="text-[10px] font-mono text-primary-500 uppercase">Insta_Feed</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-auto pb-6">
+      <div
+        class="bg-primary-500/5 border border-primary-900/20 p-4 font-mono text-[9px] text-primary-900 leading-relaxed uppercase"
+      >
+        <div class="flex justify-between mb-1">
+          <span>Kernel_Ver:</span>
+          <span class="text-primary-700">v2.1.4_STABLE</span>
+        </div>
+        <div class="flex justify-between mb-1">
+          <span>Localization:</span>
+          <span class="text-primary-700">{{ currentLang.toUpperCase() }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Security_Level:</span>
+          <span class="text-primary-700">ENCRYPTED</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

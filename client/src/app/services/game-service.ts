@@ -1,5 +1,5 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { GameState, Role } from '../models/game.model';
+import { GamePhase, GameState, Role } from '../models/game.model';
 import { Router } from '@angular/router';
 
 const STORAGE_KEY = 'undercover_game_state';
@@ -22,13 +22,32 @@ export class GameService {
     return (intruders === 0 || alive.length <= 2) && this.players().length > 0;
   });
 
+  hasActiveGame = computed(() => {
+    const phase = this.state().phase;
+    return phase !== 'SETUP' && phase !== 'RESULTS';
+  });
+
   winners = computed(() => {
     const alive = this.state().players.filter(p => p.isAlive);
-    return alive.some(p => p.role !== 'CIVILIAN') ? 'INTRUDERS' : 'CIVILIANS';
+    const intruders = alive.filter(p => p.role !== 'CIVILIAN');
+
+    if (intruders.length === 0) return 'CIVILIANS';
+    if (alive.some(p => p.role === 'MR_WHITE')) return 'MR_WHITE';
+
+    return 'UNDERCOVER';
   });
 
   constructor() {
     effect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state())));
+  }
+
+  getResumeRoute(): string {
+    return `/game/${this.state().phase.toLowerCase()}`;
+  }
+
+  goToPhase(phase: GamePhase) {
+    this.state.update(s => ({ ...s, phase }));
+    this.router.navigate(['/game', phase.toLowerCase()]);
   }
 
   private loadFromStorage(): GameState {
@@ -91,6 +110,6 @@ export class GameService {
   reset() {
     localStorage.removeItem(STORAGE_KEY);
     this.state.set({ players: [], phase: 'SETUP', civilianWord: '', undercoverWord: '', currentPlayerIndex: 0 });
-    this.router.navigate(['/game/setup']);
+    this.router.navigate(['/']);
   }
 }

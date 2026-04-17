@@ -1,3 +1,12 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+:root {
+  --p-font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+  @apply antialiased;
+}

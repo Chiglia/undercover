@@ -1,42 +1,74 @@
-<div
-  class="flex flex-col items-center justify-center min-h-[80vh] gap-8 animate-in fade-in duration-500"
->
-  <div class="text-center">
-    <h2 class="text-4xl font-black mb-2">{{ store.currentPlayer().name }}</h2>
-    <p class="text-slate-500 uppercase tracking-widest text-sm">È il tuo turno</p>
-  </div>
+<div class="h-full w-full flex flex-col items-center p-6 relative overflow-hidden">
+  <header class="w-full max-w-sm mt-4 mb-8 border-l-4 border-primary-500 pl-4 shrink-0">
+    <p class="text-[10px] text-primary-700 font-bold uppercase tracking-[0.3em]">
+      Accesso_Autorizzato_A:
+    </p>
+    <h2
+      class="text-4xl font-black tracking-tighter text-primary-400 uppercase drop-shadow-[0_0_8px_rgba(var(--primary-rgb),0.4)]"
+    >
+      {{ store.currentPlayer().name }}
+    </h2>
+  </header>
 
-  <p-card class="w-full max-w-sm overflow-hidden border-t-4 border-primary">
-    <div class="flex flex-col items-center gap-6 py-4">
+  <main class="w-full max-w-sm flex-1 flex flex-col gap-8 items-center justify-center">
+    <div
+      class="w-full aspect-square border-2 border-primary-900/30 bg-primary-500/5 flex flex-col items-center justify-center relative group transition-all duration-500"
+      [class.border-primary-500]="isWordVisible()"
+      [class.shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)]]="isWordVisible()"
+    >
+      <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary-500"></div>
+      <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary-500"></div>
+
       @if (isWordVisible()) {
-        <div class="text-center animate-in zoom-in duration-300">
-          <span class="text-sm text-slate-400 block mb-1">La tua parola è:</span>
-          <strong class="text-5xl font-bold text-primary">{{ store.currentPlayer().word }}</strong>
+        <div class="text-center animate-in zoom-in duration-200">
+          <span class="text-[10px] text-primary-500 uppercase tracking-[0.4em] mb-4 block"
+            >Dato_Recuperato:</span
+          >
+          <strong
+            class="text-5xl font-black text-primary-400 tracking-tighter italic uppercase drop-shadow-[0_0_15px_rgba(var(--primary-rgb),0.8)]"
+          >
+            {{ store.currentPlayer().word }}
+          </strong>
         </div>
       } @else {
-        <div class="h-24 flex items-center justify-center italic text-slate-300">
-          Tocca il tasto sotto per rivelare
+        <div class="flex flex-col items-center gap-4 opacity-40">
+          <i class="pi pi-lock text-5xl text-primary-900"></i>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-primary-900">File_Criptato</span>
         </div>
       }
     </div>
-  </p-card>
 
-  <div class="flex flex-col w-full max-w-sm gap-3">
-    <p-button
-      [label]="isWordVisible() ? 'Nascondi' : 'Rivela Parola'"
-      [severity]="isWordVisible() ? 'secondary' : 'warn'"
-      [raised]="true"
-      class="w-full"
-      (onClick)="isWordVisible.set(!isWordVisible())"
-    />
+    <div class="w-full flex flex-col gap-4">
+      @if (!hasSeenWord()) {
+        <p-button
+          [label]="isWordVisible() ? 'NASCONDI_DATA' : 'DECRIPTA_PAROLA'"
+          (onClick)="handleReveal()"
+          class="w-full py-6 border-2 border-primary-500 bg-primary-500/10 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-400 hover:text-slate-950 transition-all"
+        />
+      } @else {
+        <p-button
+          label="[ CONFERMA_E_PASSA ]"
+          icon="pi pi-sync"
+          (onClick)="next()"
+          class="w-full py-6 bg-primary-500 border-none text-slate-950 font-black tracking-[0.2em] rounded-none shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] animate-in fade-in slide-in-from-bottom-4"
+        />
+      }
 
-    <p-button
-      label="Ho Capito, Passa il Telefono"
-      icon="pi pi-arrow-right"
-      iconPos="right"
-      [disabled]="!isWordVisible()"
-      class="w-full"
-      (onClick)="next()"
-    />
-  </div>
+      <p
+        class="text-[9px] text-center text-primary-800 uppercase tracking-widest leading-relaxed px-4"
+      >
+        {{
+          hasSeenWord()
+            ? 'PROCEDURA COMPLETATA. PASSA IL DISPOSITIVO AL PROSSIMO SOGGETTO.'
+            : 'ASSICURATI CHE NESSUNO STIA GUARDANDO OLTRE A TE.'
+        }}
+      </p>
+    </div>
+  </main>
+
+  <footer class="shrink-0 pb-4 w-full flex justify-center opacity-30">
+    <div class="text-[10px] font-mono text-primary-900 tracking-[0.5em]">
+      DATA_STREAM: {{ isWordVisible() ? 'UNLOCKED' : 'SECURED' }}
+    </div>
+  </footer>
 </div>

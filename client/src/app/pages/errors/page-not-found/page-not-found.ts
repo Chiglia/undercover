@@ -9,4 +9,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
   templateUrl: './page-not-found.html',
   styles: ``,
 })
-export class PageNotFound { }
+export class PageNotFound {
+  generateHexId(): string {
+    return Math.floor(Math.random() * 0xFFFFFF).toString(16).toUpperCase();
+  }
+}

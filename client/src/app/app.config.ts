@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: definePreset(Aura, {
           semantic: {
-            primary: palette('{blue}'),
+            primary: palette('{green}'),
           },
         }),
         options: {

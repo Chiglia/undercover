@@ -1,22 +1,51 @@
 <div
-  class="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center"
+  class="h-full w-full flex flex-col items-center justify-center p-6 relative overflow-hidden"
   *transloco="let t"
 >
-  <h1 class="text-9xl font-black text-primary/20 select-none">404</h1>
+  <div class="absolute inset-0 bg-red-950/5 pointer-events-none"></div>
 
-  <p class="text-2xl md:text-3xl font-bold mt-4 text-surface-900 dark:text-surface-0">
-    {{ t('errors.pageNotFound.title') }}
-  </p>
-
-  <p class="text-surface-600 dark:text-surface-400 mt-2 mb-8 max-w-md">
-    {{ t('errors.pageNotFound.description') }}
-  </p>
-
-  <p-button
-    label="{{ t('common.backToHome') }}"
-    routerLink="/"
-    icon="pi pi-home"
-    severity="primary"
+  <h1
+    class="absolute text-[15rem] font-black text-red-500/5 select-none tracking-tighter z-0 italic"
   >
-  </p-button>
+    404
+  </h1>
+
+  <main class="relative z-10 flex flex-col items-center max-w-sm w-full">
+    <div class="mb-6 flex flex-col items-center">
+      <i class="pi pi-shield text-red-600 text-6xl mb-2 animate-pulse"></i>
+      <div class="h-1 w-24 bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
+    </div>
+
+    <div class="text-center mb-10">
+      <h2 class="text-2xl font-black text-red-500 uppercase tracking-[0.2em] mb-3">
+        {{ t('errors.pageNotFound.title') }}
+      </h2>
+
+      <div class="bg-red-500/10 border border-red-900/50 p-4 font-mono">
+        <p class="text-[11px] text-red-400 uppercase leading-relaxed">
+          <span class="text-red-600 font-bold">[FAULT_DETECTION]:</span>
+          {{ t('errors.pageNotFound.description') }}
+        </p>
+      </div>
+
+      <p class="mt-4 text-[9px] text-primary-900 uppercase tracking-widest opacity-50">
+        Trace_ID: 0x{{ generateHexId() }} // Sector: NULL_POINTER
+      </p>
+    </div>
+
+    <p-button
+      label="REBOOT_SYSTEM_CORE"
+      routerLink="/"
+      icon="pi pi-refresh"
+      class="w-full py-4 bg-transparent border-2 border-primary-500 text-primary-400 font-black tracking-[.3em] rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)]"
+    >
+    </p-button>
+  </main>
+
+  <footer
+    class="absolute bottom-6 w-full px-10 flex justify-between text-[8px] text-red-900 font-mono opacity-40 uppercase tracking-[0.4em]"
+  >
+    <span>Critical_Error_Detected</span>
+    <span>Kernel_Panic: 0.0.4.0.4</span>
+  </footer>
 </div>
