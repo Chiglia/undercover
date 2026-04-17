@@ -43,14 +43,14 @@
         <p-button
           [label]="isWordVisible() ? 'NASCONDI_DATA' : 'DECRIPTA_PAROLA'"
           (onClick)="handleReveal()"
-          class="w-full py-6 border-2 border-primary-500 bg-primary-500/10 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-400 hover:text-slate-950 transition-all"
+          styleClass="w-full py-6 border-2 border-primary-500 bg-primary-500/10 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-400 hover:text-slate-950 transition-all"
         />
       } @else {
         <p-button
           label="[ CONFERMA_E_PASSA ]"
           icon="pi pi-sync"
           (onClick)="next()"
-          class="w-full py-6 bg-primary-500 border-none text-slate-950 font-black tracking-[0.2em] rounded-none shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] animate-in fade-in slide-in-from-bottom-4"
+          styleClass="w-full py-6 bg-primary-500 border-none text-slate-950 font-black tracking-[0.2em] rounded-none shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] animate-in fade-in slide-in-from-bottom-4"
         />
       }
 
