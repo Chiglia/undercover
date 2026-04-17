@@ -17,8 +17,8 @@ import { MenuItem } from 'primeng/api';
 export class App {
   private langService = inject(LanguageService);
   items: MenuItem[] = [
-    { label: 'Gioca', icon: 'pi pi-play', routerLink: '/setup' },
-    { label: 'Regole', icon: 'pi pi-book', routerLink: '/home' },
+    { label: 'Gioca', icon: 'pi pi-play', routerLink: '/game/setup' },
+    { label: 'Regole', icon: 'pi pi-book', routerLink: '/' },
     { label: 'Impostazioni', icon: 'pi pi-cog', routerLink: '/settings' }
   ];
 }

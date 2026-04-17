@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { GameService } from '../../services/game-service';
-import { SharedModule } from '../../../shared.module';
+import { GameService } from '../../../services/game-service';
+import { SharedModule } from '../../../../shared.module';
 import { TagModule } from 'primeng/tag';
 
 @Component({

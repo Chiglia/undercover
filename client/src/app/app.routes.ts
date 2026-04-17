@@ -8,25 +8,32 @@ export const routes: Routes = [
         title: 'Home'
     },
     {
-        path: 'setup',
-        canActivate: [gameGuard],
-        loadComponent: () => import('./pages/setup/setup').then(m => m.Setup),
-        title: 'Configurazione'
+        path: 'settings',
+        loadComponent: () => import('./pages/settings/settings').then(m => m.Settings),
+        title: 'Settings'
     },
     {
-        path: 'reveal',
+        path: 'game',
         canActivate: [gameGuard],
-        loadComponent: () => import('./pages/game/game').then(m => m.Game)
-    },
-    {
-        path: 'play',
-        canActivate: [gameGuard],
-        loadComponent: () => import('./pages/play/play').then(m => m.Play)
-    },
-    {
-        path: 'results',
-        canActivate: [gameGuard],
-        loadComponent: () => import('./pages/results/results').then(m => m.Results)
+        children: [
+            {
+                path: 'setup',
+                loadComponent: () => import('./pages/game/setup/setup').then(m => m.Setup),
+                title: 'Configurazione'
+            },
+            {
+                path: 'reveal',
+                loadComponent: () => import('./pages/game/reveal/reveal').then(m => m.Reveal)
+            },
+            {
+                path: 'play',
+                loadComponent: () => import('./pages/game/play/play').then(m => m.Play)
+            },
+            {
+                path: 'results',
+                loadComponent: () => import('./pages/game/results/results').then(m => m.Results)
+            }
+        ]
     },
     {
         path: 'page-not-found',

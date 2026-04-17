@@ -1,0 +1,1 @@
+import{Ab as a,Ma as n,fb as s,gb as i}from"./chunk-NSESU7DK.js";var o=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-settings"]],decls:2,vars:0,template:function(t,m){t&1&&(s(0,"p"),a(1,"settings works!"),i())},encapsulation:2})};export{o as Settings};

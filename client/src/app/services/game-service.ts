@@ -1,5 +1,5 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { GamePhase, GameState, Player, Role } from '../models/game.model';
+import { GameState, Role } from '../models/game.model';
 import { Router } from '@angular/router';
 
 const STORAGE_KEY = 'undercover_game_state';
@@ -63,7 +63,7 @@ export class GameService {
     });
 
     this.state.update(s => ({ ...s, players, civilianWord: cWord, undercoverWord: uWord, currentPlayerIndex: 0, phase: 'REVEAL' }));
-    this.router.navigate(['/reveal']);
+    this.router.navigate(['/game/reveal']);
   }
 
   nextReveal() {
@@ -72,7 +72,7 @@ export class GameService {
       this.state.update(s => ({ ...s, currentPlayerIndex: nextIndex }));
     } else {
       this.state.update(s => ({ ...s, phase: 'PLAY' }));
-      this.router.navigate(['/play']);
+      this.router.navigate(['/game/play']);
     }
   }
 
@@ -84,13 +84,13 @@ export class GameService {
 
     if (this.isGameOver()) {
       this.state.update(s => ({ ...s, phase: 'RESULTS' }));
-      this.router.navigate(['/results']);
+      this.router.navigate(['/game/results']);
     }
   }
 
   reset() {
     localStorage.removeItem(STORAGE_KEY);
     this.state.set({ players: [], phase: 'SETUP', civilianWord: '', undercoverWord: '', currentPlayerIndex: 0 });
-    this.router.navigate(['/setup']);
+    this.router.navigate(['/game/setup']);
   }
 }

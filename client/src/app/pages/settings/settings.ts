@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-results',
+  selector: 'app-settings',
   imports: [],
-  templateUrl: './results.html',
+  templateUrl: './settings.html',
   styles: ``,
 })
-export class Results {}
+export class Settings {}

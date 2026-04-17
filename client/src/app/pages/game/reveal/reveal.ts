@@ -1,14 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
-import { GameService } from '../../services/game-service';
-import { SharedModule } from '../../../shared.module';
+import { GameService } from '../../../services/game-service';
+import { SharedModule } from '../../../../shared.module';
 
 @Component({
   selector: 'app-game',
   imports: [SharedModule],
-  templateUrl: './game.html',
+  templateUrl: './reveal.html',
   styles: ``,
 })
-export class Game {
+export class Reveal {
   store = inject(GameService);
   isWordVisible = signal(false);
 

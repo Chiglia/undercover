@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { SharedModule } from '../../../shared.module';
-import { GameService } from '../../services/game-service';
+import { SharedModule } from '../../../../shared.module';
+import { GameService } from '../../../services/game-service';
 
 @Component({
   selector: 'app-setup',

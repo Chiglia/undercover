@@ -1,1 +1,0 @@
-import{Ab as o,Ma as s,fb as n,gb as a}from"./chunk-NSESU7DK.js";var l=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=s({type:t,selectors:[["app-results"]],decls:2,vars:0,template:function(e,r){e&1&&(n(0,"p"),o(1,"results works!"),a())},encapsulation:2})};export{l as Results};
