@@ -1,0 +1,39 @@
+<div class="flex flex-col gap-6 animate-in slide-in-from-bottom duration-500">
+  <div class="flex justify-between items-center">
+    <h2 class="text-2xl font-bold">Giocatori in Gara</h2>
+    <p-tag [value]="'Vivi: ' + aliveCount()" severity="info" />
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @for (player of store.players(); track player.id) {
+      <p-card
+        [class]="
+          !player.isAlive
+            ? 'opacity-40 grayscale pointer-events-none transition-all'
+            : 'shadow-md border-l-4 border-green-500'
+        "
+      >
+        <div class="flex justify-between items-center">
+          <div>
+            <span class="text-lg font-bold block">{{ player.name }}</span>
+            @if (!player.isAlive) {
+              <span class="text-xs font-bold uppercase text-red-500"
+                >Eliminato ({{ player.role }})</span
+              >
+            }
+          </div>
+
+          @if (player.isAlive) {
+            <p-button
+              icon="fa-solid fa-skull"
+              severity="danger"
+              [rounded]="true"
+              [text]="true"
+              (onClick)="store.eliminatePlayer(player.id)"
+            />
+          }
+        </div>
+      </p-card>
+    }
+  </div>
+</div>

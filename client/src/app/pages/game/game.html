@@ -1,0 +1,42 @@
+<div
+  class="flex flex-col items-center justify-center min-h-[80vh] gap-8 animate-in fade-in duration-500"
+>
+  <div class="text-center">
+    <h2 class="text-4xl font-black mb-2">{{ store.currentPlayer().name }}</h2>
+    <p class="text-slate-500 uppercase tracking-widest text-sm">È il tuo turno</p>
+  </div>
+
+  <p-card class="w-full max-w-sm overflow-hidden border-t-4 border-primary">
+    <div class="flex flex-col items-center gap-6 py-4">
+      @if (isWordVisible()) {
+        <div class="text-center animate-in zoom-in duration-300">
+          <span class="text-sm text-slate-400 block mb-1">La tua parola è:</span>
+          <strong class="text-5xl font-bold text-primary">{{ store.currentPlayer().word }}</strong>
+        </div>
+      } @else {
+        <div class="h-24 flex items-center justify-center italic text-slate-300">
+          Tocca il tasto sotto per rivelare
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <div class="flex flex-col w-full max-w-sm gap-3">
+    <p-button
+      [label]="isWordVisible() ? 'Nascondi' : 'Rivela Parola'"
+      [severity]="isWordVisible() ? 'secondary' : 'warn'"
+      [raised]="true"
+      class="w-full"
+      (onClick)="isWordVisible.set(!isWordVisible())"
+    />
+
+    <p-button
+      label="Ho Capito, Passa il Telefono"
+      icon="pi pi-arrow-right"
+      iconPos="right"
+      [disabled]="!isWordVisible()"
+      class="w-full"
+      (onClick)="next()"
+    />
+  </div>
+</div>
