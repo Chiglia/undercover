@@ -3,9 +3,10 @@ import { SharedModule } from '../../../shared.module';
 import { GameService } from '../../services/game-service';
 import { ActiveGameBanner } from "../common-components/active-game-banner/active-game-banner";
 import { AccordionModule } from 'primeng/accordion';
+import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-home',
-  imports: [SharedModule, ActiveGameBanner, AccordionModule],
+  imports: [SharedModule, ActiveGameBanner, AccordionModule, TranslocoModule],
   templateUrl: './home.html',
   styles: ``,
 })

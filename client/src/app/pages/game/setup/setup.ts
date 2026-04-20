@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { SharedModule } from '../../../../shared.module';
 import { GameService } from '../../../services/game-service';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-setup',
-  imports: [SharedModule],
+  imports: [SharedModule, TranslocoModule],
   templateUrl: './setup.html',
   styles: ``,
 })

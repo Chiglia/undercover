@@ -22,39 +22,39 @@
       <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary-500/20"></div>
 
       <div class="text-center relative z-10">
-        <span class="text-[10px] text-primary-600 uppercase tracking-widest block mb-2"
-          >Esito_Operazione:</span
-        >
+        <span class="text-[10px] text-primary-600 uppercase tracking-widest block mb-2">{{
+          'results.sessionResults' | transloco
+        }}</span>
 
         @switch (store.winners()) {
           @case ('CIVILIANS') {
             <h2 class="text-3xl font-black text-primary-400 uppercase tracking-tight">
-              Vittoria_Civili
+              {{ 'results.vittoriaCivili' | transloco }}
             </h2>
             <p class="text-[10px] text-primary-700 mt-2 uppercase">
-              Infiltrati neutralizzati con successo.
+              {{ 'results.descriptionCivilianWin' | transloco }}
             </p>
           }
           @case ('UNDERCOVER') {
             <h2 class="text-3xl font-black text-red-500 uppercase tracking-tight">
-              Undercover_Win
+              {{ 'results.vittoriaUndercover' | transloco }}
             </h2>
 
             <div class="h-1 w-20 bg-red-600 mx-auto mt-2"></div>
 
             <p class="text-[10px] text-red-900 mt-3 uppercase font-bold">
-              Il sistema è sotto controllo nemico.
+              {{ 'results.descriptionUndercoverWin' | transloco }}
             </p>
           }
           @case ('MR_WHITE') {
             <h2 class="text-3xl font-black text-slate-100 uppercase tracking-tight">
-              MrWhite_Victory
+              {{ 'results.vittoriaMrWhite' | transloco }}
             </h2>
 
             <div class="h-1 w-20 bg-slate-300 mx-auto mt-2"></div>
 
             <p class="text-[10px] text-slate-500 mt-3 uppercase font-bold">
-              Mr. White ha ingannato il database.
+              {{ 'results.descriptionMrWhiteWin' | transloco }}
             </p>
           }
         }
@@ -63,25 +63,28 @@
 
     <div class="grid grid-cols-2 gap-4">
       <div class="bg-slate-900/50 border border-primary-900/30 p-3">
-        <span class="text-[8px] text-primary-800 uppercase block">Durata_Sessione</span>
-        <span class="text-sm font-mono text-primary-500">CONCLUSA</span>
+        <span class="text-[8px] text-primary-800 uppercase block">{{
+          'results.sessionStatus' | transloco
+        }}</span>
+        <span class="text-sm font-mono text-primary-500">{{ 'results.ended' | transloco }}</span>
       </div>
       <div class="bg-slate-900/50 border border-primary-900/30 p-3">
-        <span class="text-[8px] text-primary-800 uppercase block">Dati_Analizzati</span>
+        <span class="text-[8px] text-primary-800 uppercase block">{{
+          'results.datiAnalizzati' | transloco
+        }}</span>
         <span class="text-sm font-mono text-primary-500">100%</span>
       </div>
     </div>
 
     <div class="mt-auto pb-8 flex flex-col gap-4">
       <p-button
-        label="[ RE-INIZIALIZZA_SISTEMA ]"
+        [label]="'results.systemReset' | transloco"
         (onClick)="store.reset()"
         styleClass="w-full whitespace-nowrap py-5 border-2 border-primary-500 bg-primary-500 text-slate-950 font-black tracking-[0.2em] rounded-none hover:bg-transparent hover:text-primary-400 transition-all shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]"
       />
 
       <p class="text-[9px] text-center text-primary-900 uppercase tracking-widest leading-relaxed">
-        Premendo il tasto sopra, tutti i registri attuali verranno sovrascritti e una nuova sessione
-        verrà avviata.
+        {{ 'results.descriptionReset' | transloco }}
       </p>
     </div>
   </main>

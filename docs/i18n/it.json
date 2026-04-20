@@ -7,5 +7,72 @@
   },
   "common": {
     "backToHome": "Torna alla Home"
+  },
+  "activeGameBanner": {
+    "activeSession": "Sessione_Attiva_Rilevata",
+    "resetSession": "[ RIPRISTINA_SESSIONE ]"
+  },
+  "nav": {
+    "play": "Gioca",
+    "rules": "Regole",
+    "settings": "Impostazioni"
+  },
+  "play": {
+    "compromesso": "Compromesso",
+    "soggettoInAnalisi": "Soggetto_in_analisi",
+    "role": "Ruolo:",
+    "monitorSoggetti": "Monitor_Soggetti",
+    "statusAttivi": "Status_Attivi"
+  },
+  "results": {
+    "esitoOperazione": "Esito_Operazione",
+    "vittoriaCivili": "Vittoria_Civili",
+    "vittoriaUndercover": "Vittoria_Undercover",
+    "vittoriaMrWhite": "Vittoria_Mr_White",
+    "descriptionCivilianWin": "Infiltrati neutralizzati con successo.",
+    "descriptionUndercoverWin": "Il sistema è sotto controllo nemico.",
+    "descriptionMrWhiteWin": "Mr. White ha ingannato il database.",
+    "sessionStatus": "Status_Sessione",
+    "ended": "CONCLUSA",
+    "datiAnalizzati": "Dati_analizzati",
+    "systemReset": "[ RE-INIZIALIZZA_SISTEMA ]",
+    "descriptionReset": "Premendo il tasto sopra, tutti i registri attuali verranno sovrascritti e una nuova sessione verrà avviata.",
+    "sessionResults": "Esito_Operazione:"
+  },
+  "reveal": {
+    "accessoAutorizzatoA": "Accesso_Autorizzato_A:",
+    "datoRecuperato": "Dato_Recuperato:",
+    "fileCriptato": "File_Criptato",
+    "nascondiData": "NASCONDI_DATA",
+    "decriptaParola": "DECRIPTA_PAROLA",
+    "confermaEPassa": "[ CONFERMA_E_PASSA ]",
+    "proceduraCompletata": "PROCEDURA COMPLETATA. PASSA IL DISPOSITIVO AL PROSSIMO SOGGETTO.",
+    "assicuratiNessunoGuardi": "ASSICURATI CHE NESSUNO STIA GUARDANDO OLTRE A TE."
+  },
+  "setup": {
+    "regSoggetti": "REG_SOGGETTI",
+    "statusInserimentoDati": "STATUS: INSERIMENTO_DATI...",
+    "inputUser": "Input_User:",
+    "nomePlaceholder": "NOME...",
+    "inAttesaDiDati": "In attesa di dati...",
+    "inizializza": "[ INIZIALIZZA ]",
+    "soggetti": "Soggetti:",
+    "integritaOk": "Integrità: OK"
+  },
+  "home": {
+    "statusBiometricScan": "[ STATUS: BIOMETRIC_SCAN_ACTIVE ]",
+    "iniziaProtocollo": "[ INIZIA_PROTOCOLLO ]",
+    "terminaleImpostazioni": "TERMINALE_IMPOSTAZIONI",
+    "accessoDatiCore": "> ACCESSO_DATI_CORE.log",
+    "sincronizzazioneCivili": "Sincronizzazione Civili: Parola_Chiave identica.",
+    "anomaliaRilevata": "Anomalia Rilevata: Undercover in possesso di variante.",
+    "mrWhite": "Mr. White: Input nullo. Protocollo Bluff attivo.",
+    "systemReady": "SYSTEM_READY_"
+  },
+  "settings": {
+    "configurazioneSistema": "Configurazione_Sistema:",
+    "linguaInterfaccia": "Lingua_Interfaccia",
+    "creatorCredentials": "Creator_Credentials",
+    "sviluppatoDa": "Sviluppato_da:"
   }
 }

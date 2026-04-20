@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared.module';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
-
+import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-nav',
-  imports: [SharedModule, MenubarModule],
+  imports: [SharedModule, MenubarModule, TranslocoModule],
   templateUrl: './nav.html',
-  styles: ``,
 })
 export class Nav {
-  items: MenuItem[] = [
-    { label: 'Gioca', icon: 'pi pi-play', routerLink: '/game/setup' },
-    { label: 'Regole', icon: 'pi pi-book', routerLink: '/' },
-    { label: 'Impostazioni', icon: 'pi pi-cog', routerLink: '/settings' }
+  readonly menuConfig = [
+    { label: 'nav.play', icon: 'pi pi-play', routerLink: '/game/setup' },
+    { label: 'nav.rules', icon: 'pi pi-book', routerLink: '/' },
+    { label: 'nav.settings', icon: 'pi pi-cog', routerLink: '/settings' }
   ];
 }

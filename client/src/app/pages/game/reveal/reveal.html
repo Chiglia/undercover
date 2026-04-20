@@ -1,7 +1,7 @@
 <div class="h-full w-full flex flex-col items-center p-6 relative overflow-hidden">
   <header class="w-full max-w-sm mt-4 mb-8 border-l-4 border-primary-500 pl-4 shrink-0">
     <p class="text-[10px] text-primary-700 font-bold uppercase tracking-[0.3em]">
-      Accesso_Autorizzato_A:
+      {{ 'reveal.accessoAutorizzatoA' | transloco }}
     </p>
     <h2
       class="text-4xl font-black tracking-tighter text-primary-400 uppercase drop-shadow-[0_0_8px_rgba(var(--primary-rgb),0.4)]"
@@ -21,9 +21,9 @@
 
       @if (isWordVisible()) {
         <div class="text-center animate-in zoom-in duration-200">
-          <span class="text-[10px] text-primary-500 uppercase tracking-[0.4em] mb-4 block"
-            >Dato_Recuperato:</span
-          >
+          <span class="text-[10px] text-primary-500 uppercase tracking-[0.4em] mb-4 block">
+            {{ 'reveal.datoRecuperato' | transloco }}
+          </span>
           <strong
             class="text-5xl font-black text-primary-400 tracking-tighter italic uppercase drop-shadow-[0_0_15px_rgba(var(--primary-rgb),0.8)]"
           >
@@ -33,7 +33,9 @@
       } @else {
         <div class="flex flex-col items-center gap-4 opacity-40">
           <i class="pi pi-lock text-5xl text-primary-900"></i>
-          <span class="text-[10px] uppercase tracking-[0.2em] text-primary-900">File_Criptato</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-primary-900">
+            {{ 'reveal.fileCriptato' | transloco }}
+          </span>
         </div>
       }
     </div>
@@ -41,13 +43,13 @@
     <div class="w-full flex flex-col gap-4">
       @if (!hasSeenWord()) {
         <p-button
-          [label]="isWordVisible() ? 'NASCONDI_DATA' : 'DECRIPTA_PAROLA'"
+          [label]="(isWordVisible() ? 'reveal.nascondiData' : 'reveal.decriptaParola') | transloco"
           (onClick)="handleReveal()"
           styleClass="w-full py-6 border-2 border-primary-500 bg-primary-500/10 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-400 hover:text-slate-950 transition-all"
         />
       } @else {
         <p-button
-          label="[ CONFERMA_E_PASSA ]"
+          [label]="'reveal.confermaEPassa' | transloco"
           icon="pi pi-sync"
           (onClick)="next()"
           styleClass="w-full py-6 bg-primary-500 border-none text-slate-950 font-black tracking-[0.2em] rounded-none shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)] animate-in fade-in slide-in-from-bottom-4"
@@ -58,9 +60,8 @@
         class="text-[9px] text-center text-primary-800 uppercase tracking-widest leading-relaxed px-4"
       >
         {{
-          hasSeenWord()
-            ? 'PROCEDURA COMPLETATA. PASSA IL DISPOSITIVO AL PROSSIMO SOGGETTO.'
-            : 'ASSICURATI CHE NESSUNO STIA GUARDANDO OLTRE A TE.'
+          (hasSeenWord() ? 'reveal.proceduraCompletata' : 'reveal.assicuratiNessunoGuardi')
+            | transloco
         }}
       </p>
     </div>

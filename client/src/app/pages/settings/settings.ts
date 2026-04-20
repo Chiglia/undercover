@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActiveGameBanner } from "../common-components/active-game-banner/active-game-banner";
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
+import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +10,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
   styles: ``,
 })
 export class Settings {
-  private translocoService = inject(TranslocoService);
+  private languageService = inject(LanguageService);
 
   availableLangs = [
     { code: 'it', label: 'Italiano' },
@@ -17,12 +18,10 @@ export class Settings {
   ];
 
   get currentLang() {
-    return this.translocoService.getActiveLang();
+    return this.languageService.currentLang;
   }
 
   changeLang(code: string) {
-    this.translocoService.setActiveLang(code);
-    // Opzionale: salva la preferenza nel localStorage
-    localStorage.setItem('preferred_lang', code);
+    this.languageService.setLanguage(code);
   }
 }

@@ -7,5 +7,73 @@
   },
   "common": {
     "backToHome": "Back to Home"
+  },
+  "activeGameBanner": {
+    "activeSession": "Active_Session_Detected",
+    "resetSession": "[ RESTORE_SESSION ]",
+    "abortSession": "ABORT_PROCESS"
+  },
+  "nav": {
+    "play": "Play",
+    "rules": "Rules",
+    "settings": "Settings"
+  },
+  "play": {
+    "compromesso": "Compromised",
+    "soggettoInAnalisi": "Subject_under_analysis",
+    "role": "Role:",
+    "monitorSoggetti": "Subject_Monitor",
+    "statusAttivi": "Active_Status"
+  },
+  "results": {
+    "esitoOperazione": "Operation_Outcome",
+    "vittoriaCivili": "Civilians_Victory",
+    "vittoriaUndercover": "Undercover_Victory",
+    "vittoriaMrWhite": "Mr_White_Victory",
+    "descriptionCivilianWin": "Infiltrators successfully neutralized.",
+    "descriptionUndercoverWin": "System is under enemy control.",
+    "descriptionMrWhiteWin": "Mr. White has deceived the database.",
+    "sessionStatus": "Session_Status",
+    "ended": "TERMINATED",
+    "datiAnalizzati": "Analyzed_data",
+    "systemReset": "[ RE-INITIALIZE_SYSTEM ]",
+    "descriptionReset": "By pressing the button above, all current logs will be overwritten and a new session will be initiated.",
+    "sessionResults": "Operation_Outcome:"
+  },
+  "reveal": {
+    "accessoAutorizzatoA": "Access_Authorized_To:",
+    "datoRecuperato": "Data_Retrieved:",
+    "fileCriptato": "Encrypted_File",
+    "nascondiData": "HIDE_DATA",
+    "decriptaParola": "DECRYPT_WORD",
+    "confermaEPassa": "[ CONFIRM_AND_PASS ]",
+    "proceduraCompletata": "PROCEDURE COMPLETE. PASS THE DEVICE TO THE NEXT SUBJECT.",
+    "assicuratiNessunoGuardi": "ENSURE NO ONE ELSE IS WATCHING."
+  },
+  "setup": {
+    "regSoggetti": "SUBJECT_REG",
+    "statusInserimentoDati": "STATUS: DATA_INPUT...",
+    "inputUser": "User_Input:",
+    "nomePlaceholder": "NAME...",
+    "inAttesaDiDati": "Waiting for data...",
+    "inizializza": "[ INITIALIZE ]",
+    "soggetti": "Subjects:",
+    "integritaOk": "Integrity: OK"
+  },
+  "home": {
+    "statusBiometricScan": "[ STATUS: BIOMETRIC_SCAN_ACTIVE ]",
+    "iniziaProtocollo": "[ INITIATE_PROTOCOL ]",
+    "terminaleImpostazioni": "SETTINGS_TERMINAL",
+    "accessoDatiCore": "> CORE_DATA_ACCESS.log",
+    "sincronizzazioneCivili": "Civilians Sync: Keyword identical.",
+    "anomaliaRilevata": "Anomaly Detected: Undercover holding variant.",
+    "mrWhite": "Mr. White: Null input. Bluff Protocol active.",
+    "systemReady": "SYSTEM_READY_"
+  },
+  "settings": {
+    "configurazioneSistema": "System_Configuration:",
+    "linguaInterfaccia": "Interface_Language",
+    "creatorCredentials": "Creator_Credentials",
+    "sviluppatoDa": "Developed_by:"
   }
 }
