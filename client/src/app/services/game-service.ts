@@ -1,6 +1,7 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { GamePhase, GameState, Role } from '../models/game.model';
+import { GamePhase, GameState, Player, Role } from '../models/game.model';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 const STORAGE_KEY = 'undercover_game_state';
 
@@ -9,6 +10,7 @@ const STORAGE_KEY = 'undercover_game_state';
 })
 export class GameService {
   private router = inject(Router);
+  private http = inject(HttpClient);
 
   private state = signal<GameState>(this.loadFromStorage());
 
@@ -41,6 +43,10 @@ export class GameService {
     effect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state())));
   }
 
+  getWords() {
+    return this.http.get<{ civil: string, undercover: string }[]>('words.json');
+  }
+
   getResumeRoute(): string {
     return `/game/${this.state().phase.toLowerCase()}`;
   }
@@ -68,20 +74,39 @@ export class GameService {
     }));
   }
 
-  startGame(cWord: string, uWord: string, undercover: number, mrWhite: number) {
-    const players = this.state().players.map(p => ({ ...p, isAlive: true }));
-    const roles: Role[] = [
+  private calculateRoles(total: number): Role[] {
+    const mrWhite = total >= 3 ? 1 : 0;
+    const undercover = total >= 5 ? Math.floor((total - 1) / 3) : 0;
+    const civilians = total - mrWhite - undercover;
+
+    return [
       ...Array(undercover).fill('UNDERCOVER'),
       ...Array(mrWhite).fill('MR_WHITE'),
-      ...Array(players.length - undercover - mrWhite).fill('CIVILIAN')
+      ...Array(civilians).fill('CIVILIAN')
     ].sort(() => Math.random() - 0.5);
+  }
 
-    players.forEach((p, i) => {
-      p.role = roles[i];
-      p.word = p.role === 'MR_WHITE' ? '???' : (p.role === 'CIVILIAN' ? cWord : uWord);
-    });
+  startGame(cWord: string, uWord: string, names: string[]) {
+    const uniqueNames = [...new Set(names)];
+    if (uniqueNames.length < 3) return;
 
-    this.state.update(s => ({ ...s, players, civilianWord: cWord, undercoverWord: uWord, currentPlayerIndex: 0, phase: 'REVEAL' }));
+    const roles = this.calculateRoles(uniqueNames.length);
+    const players: Player[] = uniqueNames.map((name, i) => ({
+      id: crypto.randomUUID(),
+      name: name.trim(),
+      isAlive: true,
+      role: roles[i],
+      word: roles[i] === 'MR_WHITE' ? 'MR_WHITE' : (roles[i] === 'CIVILIAN' ? cWord : uWord)
+    }));
+
+    this.state.update(s => ({
+      ...s,
+      players,
+      civilianWord: cWord,
+      undercoverWord: uWord,
+      currentPlayerIndex: 0,
+      phase: 'REVEAL'
+    }));
     this.router.navigate(['/game/reveal']);
   }
 

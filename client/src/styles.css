@@ -1,12 +1,35 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 :root {
   --p-font-family: 'Share Tech Mono', monospace;
 }
 
 body {
   font-family: 'Share Tech Mono', monospace;
-  @apply antialiased;
+}
+
+@keyframes pulse-flicker {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(100%) contrast(100%);
+  }
+  50% {
+    opacity: 0.92;
+    filter: brightness(110%) contrast(95%);
+  }
+  98% {
+    opacity: 1;
+    filter: brightness(100%) contrast(100%);
+  }
+  99% {
+    opacity: 0.8;
+    filter: brightness(150%) contrast(120%);
+  }
+}
+
+.animate-pulse-flicker {
+  animation: pulse-flicker 4s infinite;
 }

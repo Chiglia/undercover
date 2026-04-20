@@ -5,16 +5,16 @@
 
   <p-menubar
     [model]="items"
-    class="bg-transparent border-none px-4 py-1"
     [pt]="{
-      root: { class: 'bg-transparent border-none' },
+      root: { class: 'bg-transparent border-none px-4 py-1 flex items-center justify-between' },
       button: {
         class:
-          'border-2 border-primary-500/50 bg-primary-500/5 text-primary-400 w-10 h-10 rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all',
+          'ml-auto border-2 border-primary-500/50 bg-primary-500/5 text-primary-400 w-10 h-10 rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all order-last',
       },
       rootList: {
         class: 'bg-slate-950 border-2 border-primary-500/50 p-2 mt-2 shadow-[0_0_25px_black]',
       },
+      start: { class: 'flex-shrink-0' },
     }"
   >
     <ng-template #start>

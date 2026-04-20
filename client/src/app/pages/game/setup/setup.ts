@@ -9,16 +9,31 @@ import { GameService } from '../../../services/game-service';
   styles: ``,
 })
 export class Setup {
-  store = inject(GameService);
+  private store = inject(GameService);
+  private words = signal<{ civil: string, undercover: string }[]>([]);
   newName = signal('');
   names = signal<string[]>([]);
-  cWord = signal('Pizza');
-  uWord = signal('Focaccia');
 
-  add() { if (this.newName()) { this.names.update(n => [...n, this.newName()]); this.newName.set(''); } }
-  remove(i: number) { this.names.update(n => n.filter((_, idx) => idx !== i)); }
+  constructor() {
+    this.store.getWords().subscribe(data => this.words.set(data));
+  }
+
+  add() {
+    const name = this.newName().trim();
+    if (name && !this.names().includes(name)) {
+      this.names.update(n => [...n, name]);
+      this.newName.set('');
+    }
+  }
+
+  remove(i: number) {
+    this.names.update(n => n.filter((_, idx) => idx !== i));
+  }
   start() {
-    this.store.updatePlayers(this.names());
-    this.store.startGame(this.cWord(), this.uWord(), 1, 1);
+    const availableWords = this.words();
+    if (this.names().length >= 3 && availableWords.length > 0) {
+      const pair = availableWords[Math.floor(Math.random() * availableWords.length)];
+      this.store.startGame(pair.civil, pair.undercover, this.names());
+    }
   }
 }

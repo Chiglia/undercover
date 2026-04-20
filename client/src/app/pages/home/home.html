@@ -1,59 +1,134 @@
-<div class="h-full w-full flex flex-col items-center justify-between p-6 relative">
+@if (isBooting() && !service.hasActiveGame()) {
   <div
-    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(var(--primary-rgb),0.1)_0%,transparent_60%)] -z-10"
+    class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center font-mono p-10 overflow-hidden"
+  >
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_2px] pointer-events-none"
+    ></div>
+
+    <div class="w-full max-w-md space-y-2">
+      @for (log of bootLogs(); track $index) {
+        <div
+          class="text-primary-500 text-[10px] tracking-[0.2em] animate-in fade-in slide-in-from-left-2 duration-150"
+        >
+          {{ log }}
+        </div>
+      }
+      <div class="pt-4">
+        <div class="h-[2px] w-full bg-primary-950 relative overflow-hidden">
+          <div class="absolute inset-0 bg-primary-500 animate-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <span class="absolute bottom-10 text-[8px] text-primary-900 animate-pulse tracking-[0.5em]">
+      [ STATUS: BIOMETRIC_SCAN_ACTIVE ]
+    </span>
+  </div>
+}
+<div
+  class="h-full w-full flex flex-col items-center justify-between p-6 relative overflow-hidden bg-slate-950 transition-opacity duration-700"
+  [style.opacity]="isBooting() && !service.hasActiveGame() ? '0' : '1'"
+>
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(var(--primary-rgb),0.15)_0%,transparent_60%)] -z-10"
   ></div>
 
   <div
-    class="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.08)_50%)] bg-[length:100%_4px]"
+    class="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_3px,3px_100%]"
+  ></div>
+  <div
+    class="pointer-events-none absolute inset-0 z-50 animate-scanline bg-[linear-gradient(to_bottom,transparent,rgba(var(--primary-rgb),0.05)_50%,transparent)] h-20 w-full opacity-20"
   ></div>
 
-  <header class="text-center mt-4">
-    <h1
-      class="text-4xl font-black italic tracking-tighter text-primary-400 drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)] animate-pulse uppercase"
+  <header class="text-center mt-12 relative select-none">
+    <div
+      class="absolute -left-8 -top-8 text-[10px] text-primary-900 font-mono flex flex-col items-start opacity-30"
     >
-      Undercover
-    </h1>
-    <div class="h-0.5 w-16 bg-primary-900 mx-auto mt-2"></div>
+      <span>LAT: 45.4642</span>
+      <span>LON: 9.1900</span>
+    </div>
+
+    <div class="relative inline-block">
+      <span
+        class="absolute inset-0 text-7xl font-black italic tracking-tighter text-primary-500/30 blur-[4px] uppercase select-none"
+        aria-hidden="true"
+      >
+        Undercover
+      </span>
+
+      <h1
+        class="relative text-7xl font-black italic tracking-tighter text-primary-400 uppercase mix-blend-screen drop-shadow-[0_0_8px_rgba(var(--primary-rgb),0.8)] animate-pulse-flicker"
+      >
+        Undercover
+      </h1>
+    </div>
+
+    <div
+      class="h-[1px] w-full bg-gradient-to-r from-transparent via-primary-500/50 to-transparent mt-2 shadow-[0_0_12px_rgba(var(--primary-rgb),0.3)]"
+    ></div>
   </header>
 
-  <main class="w-full max-w-xs flex flex-col gap-6">
+  <main class="w-full max-w-xs flex flex-col gap-8 relative z-10">
     <app-active-game-banner />
 
-    <div class="flex flex-col gap-3">
-      <p-button
-        label="[ INIZIA_PROTOCOLLO ]"
-        (onClick)="startNew()"
-        styleClass="w-full py-5 border-2 border-primary-500 bg-primary-500/5 text-primary-400 font-bold tracking-[0.2em] rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all shadow-[0_0_15px_rgba(var(--primary-rgb),0.2)]"
-      />
+    @if (!service.hasActiveGame()) {
+      <div class="flex flex-col gap-4">
+        <p-button
+          label="[ INIZIA_PROTOCOLLO ]"
+          (onClick)="startNew()"
+          styleClass="w-full py-6 border-2 border-primary-500 bg-primary-500/10 text-primary-400 font-bold tracking-[0.25em] rounded-none hover:bg-primary-500 hover:text-slate-950 transition-all shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] group"
+        >
+          <ng-template pTemplate="content">
+            <span
+              class="group-hover:animate-ping opacity-20 absolute inset-0 bg-primary-400"
+            ></span>
+            <span class="relative z-10">[ INIZIA_PROTOCOLLO ]</span>
+          </ng-template>
+        </p-button>
 
-      <p-button
-        label="IMPOSTAZIONI"
-        routerLink="/settings"
-        [text]="true"
-        styleClass="w-full text-primary-800 hover:text-primary-400 text-[10px] tracking-[0.3em] uppercase transition-colors"
-      />
-    </div>
+        <p-button
+          label="TERMINALE_IMPOSTAZIONI"
+          routerLink="/settings"
+          [text]="true"
+          styleClass="w-full text-primary-800 hover:text-primary-400 text-[10px] tracking-[0.4em] uppercase"
+        />
+      </div>
+    }
   </main>
 
-  <section class="w-full max-w-xs">
-    <p-accordion value="0" [pt]="{ root: { class: 'bg-transparent border-none' } }">
-      <p-accordion-panel value="0" class="border-none bg-transparent">
+  <section
+    class="w-full block mt-2 max-w-xs bg-primary-950/20 border border-primary-900/30 backdrop-blur-sm"
+  >
+    <p-accordion value="0">
+      <p-accordion-panel value="0">
         <p-accordion-header
-          [pt]="{ root: { class: 'bg-transparent border-none p-0 flex justify-center' } }"
+          [pt]="{
+            root: {
+              class: 'bg-transparent p-3 flex justify-center border-b border-primary-900/20',
+            },
+          }"
         >
           <span
-            class="text-[10px] text-primary-700 tracking-[0.4em] uppercase hover:text-primary-400 transition-colors p-2 cursor-pointer"
+            class="text-[9px] text-primary-600 tracking-[0.5em] uppercase font-mono animate-pulse"
           >
-            > Leggi_Regole.log
+            > ACCESSO_DATI_CORE.log
           </span>
         </p-accordion-header>
-        <p-accordion-content [pt]="{ content: { class: 'bg-transparent border-none p-4' } }">
-          <div
-            class="text-[11px] text-primary-600/70 space-y-3 border-l border-primary-900/40 pl-4 font-mono leading-relaxed"
-          >
-            <p><b class="text-primary-400">#01</b> Tutti i Civili hanno la stessa parola.</p>
-            <p><b class="text-primary-400">#02</b> Undercover ha una parola simile ma diversa.</p>
-            <p><b class="text-primary-400">#03</b> Mr. White non ha parole. Bluffa.</p>
+        <p-accordion-content [pt]="{ content: { class: 'bg-transparent p-4' } }">
+          <div class="text-[10px] text-primary-500/80 space-y-4 font-mono">
+            <div class="flex gap-2">
+              <span class="text-primary-400">#01</span>
+              <p>Sincronizzazione Civili: Parola_Chiave identica.</p>
+            </div>
+            <div class="flex gap-2">
+              <span class="text-primary-400">#02</span>
+              <p>Anomalia Rilevata: Undercover in possesso di variante.</p>
+            </div>
+            <div class="flex gap-2">
+              <span class="text-primary-400">#03</span>
+              <p>Mr. White: Input nullo. Protocollo Bluff attivo.</p>
+            </div>
           </div>
         </p-accordion-content>
       </p-accordion-panel>
@@ -61,9 +136,15 @@
   </section>
 
   <footer
-    class="w-full flex justify-between text-[8px] text-primary-900 font-bold opacity-40 uppercase tracking-[0.3em] pb-2"
+    class="w-full flex justify-between items-end text-[8px] text-primary-700 font-mono tracking-[0.2em] pb-4 px-2"
   >
-    <span>Kernel_v21.4</span>
-    <span class="animate-pulse">Ready_</span>
+    <div class="flex flex-col">
+      <span>CPU_LOAD: 24%</span>
+      <span>MEM_ACCESS: OK</span>
+    </div>
+    <div class="text-right">
+      <span class="block">STAZIONE_ID: 0x88F</span>
+      <span class="animate-pulse text-primary-500">SYSTEM_READY_</span>
+    </div>
   </footer>
 </div>
